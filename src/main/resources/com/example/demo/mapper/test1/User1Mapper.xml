@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.test1.User1Mapper" >
+    <resultMap id="BaseResultMap" type="com.example.demo.model.User" >
+        <id column="pkid" property="pkid" jdbcType="BIGINT" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getAll" resultMap="BaseResultMap"  >
+       SELECT 
+     pkid,username
+	   FROM tuser
+    </select>
+
+
+</mapper>
