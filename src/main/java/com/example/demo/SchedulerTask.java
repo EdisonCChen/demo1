@@ -8,6 +8,6 @@ public class SchedulerTask {
     private int count=0;
     @Scheduled(cron = "*/6 * * * * ?")
     private void process(){
-        System.out.println("执行次数"+(count++));
+        System.out.println("执行次数"+(count++));      
     }
 }
