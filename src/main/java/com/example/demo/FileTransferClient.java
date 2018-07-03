@@ -2,6 +2,7 @@ package com.example.demo;
 import java.io.*;
 import java.net.Socket;
 import java.util.Random;
+import java.util.concurrent.Semaphore;
 
 
 public class FileTransferClient extends Socket {
@@ -14,6 +15,7 @@ public class FileTransferClient extends Socket {
     private FileInputStream fis;
 
     private DataOutputStream dos;
+    static Semaphore semaphore = new Semaphore(3,true);
 
     /**
      * 构造函数<br/>
@@ -31,8 +33,9 @@ public class FileTransferClient extends Socket {
      * @throws Exception
      */
     public void sendFile() throws Exception {
+        semaphore.acquire();
         try {
-            File file = new File("C:\\Users\\Administrator\\Desktop\\test\\1.png");
+            File file = new File("C:\\Users\\Administrator\\Desktop\\test\\411.jpg");
             if(file.exists()) {
                 fis = new FileInputStream(file);
                 dos = new DataOutputStream(client.getOutputStream());
@@ -98,6 +101,7 @@ public class FileTransferClient extends Socket {
             if(dos != null)
                 dos.close();
             client.close();
+            semaphore.release();
         }
     }
 
@@ -106,12 +110,20 @@ public class FileTransferClient extends Socket {
      * @param args
      */
     public static void main(String[] args) {
-        try {
-            FileTransferClient client = new FileTransferClient(); // 启动客户端连接
-            client.sendFile(); // 传输文件
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (int i=0;i<6;i++){
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        FileTransferClient client = new FileTransferClient(); // 启动客户端连接
+                        client.sendFile(); // 传输文件
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
         }
+
     }
 
 }
