@@ -23,6 +23,7 @@ public class RegexExample1 {
             c++;
         }
         System.out.println("总共单词数："+c);
+        System.out.println("总共单词数："+c);
 
     }
 }
