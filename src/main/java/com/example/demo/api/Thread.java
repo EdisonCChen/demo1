@@ -34,7 +34,7 @@ public class Thread {
             exec.submit(task);
         }
         exec.shutdown();
-        exec.awaitTermination(1, TimeUnit.HOURS);
+        exec.awaitTermination(50, TimeUnit.MINUTES);
         writer.write("---END---\n");
         writer.close();
         System.out.println("ËùÓÐµÄ×ÓÏß³Ì¶¼½áÊøÁË£¡");
