@@ -55,7 +55,7 @@ import sun.misc.BASE64Encoder;
             int width = 800;
             int height = 480;
             String content = "你好";
-            File file = new File("D:/Users/CHENJH/Desktop/test/createImage1.jpg");
+            File file = new File("D:/Users/CHENJH/Desktop/test/createImage121.jpg");
             Font font = new Font("Serif", Font.BOLD, 50);
 
             BufferedImage bufferedImage = new BufferedImage(
@@ -65,7 +65,7 @@ import sun.misc.BASE64Encoder;
             );
 
             Graphics2D graphics2D = (Graphics2D) bufferedImage.getGraphics();
-            graphics2D.setBackground(Color.CYAN);
+            graphics2D.setBackground(Color.decode("#4EEE94"));
             graphics2D.clearRect(0, 0, width, height);
             graphics2D.setPaint(Color.RED);
             FontRenderContext fontRenderContext = graphics2D.getFontRenderContext();
